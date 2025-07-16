@@ -12,6 +12,21 @@ import { CNNTraining } from "./CNNTraining";
 
 export function NetworkSecurityDashboard() {
   const [activeTab, setActiveTab] = useState("scanner");
+  const [activeScans, setActiveScans] = useState(0);
+  const [vulnerabilityCount, setVulnerabilityCount] = useState(0);
+  const [alertCount, setAlertCount] = useState(0);
+
+  const handleScanUpdate = (count: number) => {
+    setActiveScans(count);
+  };
+
+  const handleVulnerabilityUpdate = (count: number) => {
+    setVulnerabilityCount(count);
+  };
+
+  const handleAlertUpdate = (count: number) => {
+    setAlertCount(count);
+  };
 
   return (
     <div className="min-h-screen bg-background p-6 space-y-6">
@@ -24,6 +39,45 @@ export function NetworkSecurityDashboard() {
           Comprehensive network security auditing, vulnerability assessment, and CIFAR-10 CNN training platform
         </p>
       </div>
+
+      {/* Quick Stats */}
+      {(activeScans > 0 || vulnerabilityCount > 0 || alertCount > 0) && (
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <Card>
+            <CardContent className="p-4">
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="text-sm text-muted-foreground">Active Scans</p>
+                  <p className="text-2xl font-bold">{activeScans}</p>
+                </div>
+                <Search className="h-8 w-8 text-primary" />
+              </div>
+            </CardContent>
+          </Card>
+          <Card>
+            <CardContent className="p-4">
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="text-sm text-muted-foreground">Vulnerabilities</p>
+                  <p className="text-2xl font-bold text-red-600">{vulnerabilityCount}</p>
+                </div>
+                <Shield className="h-8 w-8 text-red-500" />
+              </div>
+            </CardContent>
+          </Card>
+          <Card>
+            <CardContent className="p-4">
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="text-sm text-muted-foreground">Security Alerts</p>
+                  <p className="text-2xl font-bold text-orange-600">{alertCount}</p>
+                </div>
+                <Activity className="h-8 w-8 text-orange-500" />
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+      )}
 
       {/* Main Dashboard */}
       <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-6">
@@ -55,11 +109,11 @@ export function NetworkSecurityDashboard() {
         </TabsList>
 
         <TabsContent value="scanner">
-          <NetworkScanner />
+          <NetworkScanner onScanUpdate={handleScanUpdate} />
         </TabsContent>
 
         <TabsContent value="vulnerability">
-          <VulnerabilityScanner />
+          <VulnerabilityScanner onVulnerabilityUpdate={handleVulnerabilityUpdate} />
         </TabsContent>
 
         <TabsContent value="traffic">
@@ -67,7 +121,7 @@ export function NetworkSecurityDashboard() {
         </TabsContent>
 
         <TabsContent value="logs">
-          <LogAnalyzer />
+          <LogAnalyzer onAlertUpdate={handleAlertUpdate} />
         </TabsContent>
 
         <TabsContent value="reports">
