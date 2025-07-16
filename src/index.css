@@ -8,33 +8,51 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    --background: 220 27% 98%;
+    --foreground: 224 71% 4%;
 
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card-foreground: 224 71% 4%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover-foreground: 224 71% 4%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 201 96% 32%;
+    --primary-foreground: 220 27% 98%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 217 91% 95%;
+    --secondary-foreground: 201 96% 32%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 217 91% 95%;
+    --muted-foreground: 215 25% 27%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 197 71% 73%;
+    --accent-foreground: 224 71% 4%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 220 27% 98%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 217 91% 92%;
+    --input: 217 91% 92%;
+    --ring: 201 96% 32%;
+    
+    /* Tech-focused gradients and custom properties */
+    --gradient-primary: linear-gradient(135deg, hsl(201 96% 32%), hsl(197 71% 73%));
+    --gradient-secondary: linear-gradient(135deg, hsl(217 91% 95%), hsl(220 27% 98%));
+    --gradient-accent: linear-gradient(135deg, hsl(197 71% 73%), hsl(201 96% 32%));
+    
+    /* ML/Tech specific colors */
+    --success: 142 76% 36%;
+    --success-foreground: 220 27% 98%;
+    --warning: 38 92% 50%;
+    --warning-foreground: 224 71% 4%;
+    --info: 201 96% 32%;
+    --info-foreground: 220 27% 98%;
+    
+    /* Animation and shadow properties */
+    --shadow-ml: 0 4px 20px -2px hsl(201 96% 32% / 0.15);
+    --shadow-card: 0 2px 10px -2px hsl(224 71% 4% / 0.08);
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
     --radius: 0.5rem;
 
@@ -56,33 +74,42 @@ All colors MUST be HSL.
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
+    --background: 224 71% 4%;
+    --foreground: 220 27% 98%;
 
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
+    --card: 215 28% 9%;
+    --card-foreground: 220 27% 98%;
 
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
+    --popover: 215 28% 9%;
+    --popover-foreground: 220 27% 98%;
 
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
+    --primary: 197 71% 73%;
+    --primary-foreground: 224 71% 4%;
 
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
+    --secondary: 215 28% 14%;
+    --secondary-foreground: 220 27% 98%;
 
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
+    --muted: 215 28% 14%;
+    --muted-foreground: 217 91% 59%;
 
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
+    --accent: 201 96% 32%;
+    --accent-foreground: 220 27% 98%;
 
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 62% 30%;
+    --destructive-foreground: 220 27% 98%;
 
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
+    --border: 215 28% 14%;
+    --input: 215 28% 14%;
+    --ring: 197 71% 73%;
+    
+    /* Dark mode gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(197 71% 73%), hsl(201 96% 32%));
+    --gradient-secondary: linear-gradient(135deg, hsl(215 28% 14%), hsl(224 71% 4%));
+    --gradient-accent: linear-gradient(135deg, hsl(201 96% 32%), hsl(197 71% 73%));
+    
+    /* Dark mode shadows */
+    --shadow-ml: 0 4px 20px -2px hsl(197 71% 73% / 0.2);
+    --shadow-card: 0 2px 10px -2px hsl(0 0% 0% / 0.3);
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
     --sidebar-primary: 224.3 76.3% 48%;
@@ -101,5 +128,13 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground;
+  }
+  
+  /* Pixelated image rendering for CIFAR-10 style */
+  .pixelated {
+    image-rendering: -moz-crisp-edges;
+    image-rendering: -webkit-crisp-edges;
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
   }
 }
